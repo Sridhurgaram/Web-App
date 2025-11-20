@@ -1,212 +1,192 @@
 {
-	"info": {
-		"_postman_id": "dbca2dbb-583e-4504-9501-907f297b555f",
-		"name": "Task Management API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "49966526",
-		"_collection_link": "https://sridhurga-r-5303944.postman.co/workspace/a9afb1cc-6e73-40cc-884e-daa1318e3e74/collection/49966526-dbca2dbb-583e-4504-9501-907f297b555f?action=share&source=collection_link&creator=49966526"
-	},
-	"item": [
-		{
-			"name": "Register User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"123456\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/auth/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"auth",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"srid@example.com\",\r\n  \"password\": \"123456\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/auth/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"auth",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTFkNGQwYjUwMjdkZjM1YjVhYjJmZWMiLCJpYXQiOjE3NjM1Mjc5NDd9.PZQr-Br-e2jNHmqqUxTJd1ZAfeeq9CVY8FkL72loB2A",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"title\": \"hello\",\r\n  \"description\": \"helo\",\r\n  \"assignee\": \"Charlie\",\r\n  \"estimatedHours\": 2,\r\n  \"priority\": \"High\"\r\n}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/tasks/691dc0f3fd625fa6e9be3fd2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"tasks",
-						"691dc0f3fd625fa6e9be3fd2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get taks",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTFkNGQwYjUwMjdkZjM1YjVhYjJmZWMiLCJpYXQiOjE3NjM1Mjc5NDd9.PZQr-Br-e2jNHmqqUxTJd1ZAfeeq9CVY8FkL72loB2A",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/api/tasks",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"tasks"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTFkNGQwYjUwMjdkZjM1YjVhYjJmZWMiLCJpYXQiOjE3NjM1Mjc5NDd9.PZQr-Br-e2jNHmqqUxTJd1ZAfeeq9CVY8FkL72loB2A",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"title\": \"Updated Task\",\r\n  \"description\": \"Updated description\",\r\n  \"assignee\": \"Charlie\",\r\n  \"estimatedHours\": 3,\r\n  \"priority\": \"High\"\r\n}\r\n\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/tasks/691dc0f3fd625fa6e9be3fd2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"tasks",
-						"691dc0f3fd625fa6e9be3fd2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTFkNGQwYjUwMjdkZjM1YjVhYjJmZWMiLCJpYXQiOjE3NjM1Mjc5NDd9.PZQr-Br-e2jNHmqqUxTJd1ZAfeeq9CVY8FkL72loB2A",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/api/tasks/691dc0f3fd625fa6e9be3fd2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"tasks",
-						"691dc0f3fd625fa6e9be3fd2"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "dbca2dbb-583e-4504-9501-907f297b555f",
+    "name": "Task Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49966526"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"123456\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "auth", "register"]
+        }
+      },
+      "response": [
+        {
+          "name": "Example Response",
+          "originalRequest": {},
+          "status": "Created",
+          "code": 201,
+          "body": "{\n  \"_id\": \"691dc0f3fd625fa6e9be3fd2\",\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"token\": \"<jwt_token_here>\"\n}",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"srid@example.com\",\n  \"password\": \"123456\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "auth", "login"]
+        }
+      },
+      "response": [
+        {
+          "name": "Example Response",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"token\": \"<jwt_token_here>\",\n  \"user\": {\n    \"_id\": \"691dc0f3fd625fa6e9be3fd2\",\n    \"name\": \"Sridhar\",\n    \"email\": \"srid@example.com\"\n  }\n}",
+          "header": [{ "key": "Content-Type", "value": "application/json" }]
+        }
+      ]
+    },
+    {
+      "name": "Create Task",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "<jwt_token_here>", "type": "string" }]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"hello\",\n  \"description\": \"helo\",\n  \"assignee\": \"Charlie\",\n  \"estimatedHours\": 2,\n  \"priority\": \"High\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"]
+        }
+      },
+      "response": [
+        {
+          "name": "Example Response",
+          "originalRequest": {},
+          "status": "Created",
+          "code": 201,
+          "body": "{\n  \"_id\": \"691dc0f3fd625fa6e9be3fd2\",\n  \"title\": \"hello\",\n  \"description\": \"helo\",\n  \"assignee\": \"Charlie\",\n  \"estimatedHours\": 2,\n  \"priority\": \"High\",\n  \"createdAt\": \"2025-11-20T04:00:00.000Z\"\n}",
+          "header": [{ "key": "Content-Type", "value": "application/json" }]
+        }
+      ]
+    },
+    {
+      "name": "Get Tasks",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "<jwt_token_here>", "type": "string" }]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"]
+        }
+      },
+      "response": [
+        {
+          "name": "Example Response",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "body": "[{\n  \"_id\": \"691dc0f3fd625fa6e9be3fd2\",\n  \"title\": \"hello\",\n  \"description\": \"helo\",\n  \"assignee\": \"Charlie\",\n  \"estimatedHours\": 2,\n  \"priority\": \"High\",\n  \"createdAt\": \"2025-11-20T04:00:00.000Z\"\n}]",
+          "header": [{ "key": "Content-Type", "value": "application/json" }]
+        }
+      ]
+    },
+    {
+      "name": "Update Task",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "<jwt_token_here>", "type": "string" }]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Updated Task\",\n  \"description\": \"Updated description\",\n  \"assignee\": \"Charlie\",\n  \"estimatedHours\": 3,\n  \"priority\": \"High\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks/691dc0f3fd625fa6e9be3fd2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks", "691dc0f3fd625fa6e9be3fd2"]
+        }
+      },
+      "response": [
+        {
+          "name": "Example Response",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"_id\": \"691dc0f3fd625fa6e9be3fd2\",\n  \"title\": \"Updated Task\",\n  \"description\": \"Updated description\",\n  \"assignee\": \"Charlie\",\n  \"estimatedHours\": 3,\n  \"priority\": \"High\",\n  \"updatedAt\": \"2025-11-20T05:00:00.000Z\"\n}",
+          "header": [{ "key": "Content-Type", "value": "application/json" }]
+        }
+      ]
+    },
+    {
+      "name": "Delete Task",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "<jwt_token_here>", "type": "string" }]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks/691dc0f3fd625fa6e9be3fd2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks", "691dc0f3fd625fa6e9be3fd2"]
+        }
+      },
+      "response": [
+        {
+          "name": "Example Response",
+          "originalRequest": {},
+          "status": "No Content",
+          "code": 204,
+          "body": "",
+          "header": []
+        }
+      ]
+    }
+  ]
 }
