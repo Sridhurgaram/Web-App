@@ -244,31 +244,6 @@ export default function Dashboard() {
           </div>
         </main>
       </div>
-
-      {/* Delete Modal */}
-      {showDeleteModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl shadow-lg p-6 w-80">
-            <p className="text-gray-800 font-medium mb-4">
-              Are you sure you want to delete this task?
-            </p>
-            <div className="flex justify-end gap-2">
-              <button
-                className="px-3 py-1 rounded-xl bg-gray-300 hover:bg-gray-400"
-                onClick={() => setShowDeleteModal(false)}
-              >
-                Cancel
-              </button>
-              <button
-                className="px-3 py-1 rounded-xl bg-red-500 text-white hover:bg-red-600"
-                onClick={handleDelete}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
