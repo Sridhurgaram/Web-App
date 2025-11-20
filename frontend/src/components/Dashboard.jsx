@@ -16,6 +16,7 @@ export default function Dashboard() {
   const [deleteTaskId, setDeleteTaskId] = useState(null);
   const [showUserModal, setShowUserModal] = useState(false);
   const [activeMenu, setActiveMenu] = useState("Dashboard");
+  const [showAddModal, setShowAddModal] = useState(false);
 
   useEffect(() => {
     if (!localStorage.getItem("token")) window.location.href = "/login";
@@ -141,111 +142,106 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <div className="flex-1 ml-64 flex flex-col relative z-20">
-       {/* Topbar */}
-<header className="w-full flex items-center bg-white/20 backdrop-blur-lg p-4 justify-between rounded-b-xl shadow-sm border-b-2 border-purple-500">
-  {/* Search Box with Icon */}
- <div className="relative flex-1 max-w-2xl flex items-center">
-  <Search className="absolute left-3 text-gray-400 w-5 h-5 pointer-events-none" />
-  <input
-    type="text"
-    placeholder="Search tasks..."
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-    className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white/80 backdrop-blur-md text-gray-800"
-  />
-</div>
+        {/* Topbar */}
+        <header className="w-full flex items-center bg-white/20 backdrop-blur-lg p-4 justify-between rounded-b-xl shadow-sm border-b-2 border-purple-500">
+          <div className="relative flex-1 max-w-2xl flex items-center">
+            <Search className="absolute left-3 text-gray-400 w-5 h-5 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search tasks..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white/80 backdrop-blur-md text-gray-800"
+            />
+          </div>
 
-  {/* User Avatar */}
-  {user && (
-    <div
-      className="flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full ml-4 cursor-pointer relative shadow-sm"
-      onClick={() => setShowUserModal(!showUserModal)}
-    >
-      <div className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white font-semibold">
-        {user.name
-          .split(" ")
-          .map((n) => n[0])
-          .join("")
-          .toUpperCase()}
-      </div>
-      <span className="text-white font-medium">{user.name}</span>
+          {user && (
+            <div
+              className="flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full ml-4 cursor-pointer relative shadow-sm"
+              onClick={() => setShowUserModal(!showUserModal)}
+            >
+              <div className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white font-semibold">
+                {user.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .toUpperCase()}
+              </div>
+              <span className="text-white font-medium">{user.name}</span>
 
-      {showUserModal && (
-        <div className="absolute top-12 right-0 w-48 bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-4 z-50 flex flex-col gap-2">
-          <button
-            className="text-left text-white hover:text-purple-400 font-medium px-3 py-2 rounded-lg transition-colors"
-            onClick={() => setActiveMenu("Profile")}
-          >
-            My Profile
-          </button>
-          <button
-            className="text-left text-red-400 hover:text-red-500 font-medium px-3 py-2 rounded-lg transition-colors"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </div>
-      )}
-    </div>
-  )}
-</header>
-
+              {showUserModal && (
+                <div className="absolute top-12 right-0 w-48 bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-4 z-50 flex flex-col gap-2">
+                  <button
+                    className="text-left text-white hover:text-purple-400 font-medium px-3 py-2 rounded-lg transition-colors"
+                    onClick={() => setActiveMenu("Profile")}
+                  >
+                    My Profile
+                  </button>
+                  <button
+                    className="text-left text-red-400 hover:text-red-500 font-medium px-3 py-2 rounded-lg transition-colors"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </header>
 
         {/* Content Area */}
         <main className="p-8 overflow-auto flex-1">
-          {activeMenu === "Dashboard" && (
-            <div>
-              <h1 className="text-4xl font-bold text-gray-800 mb-4">
-                Dashboard
-              </h1>
-              {user && (
-                <p className="text-white text-lg mb-4">Welcome, {user.name}!</p>
-              )}
-
-              {/* Pass filteredTasks to TaskForm */}
+          <div
+            className={`transition-transform duration-300 ease-in-out ${
+              showAddModal || showDeleteModal ? "translate-y-20" : "translate-y-0"
+            }`}
+          >
+            {activeMenu === "Dashboard" && (
               <TaskForm
                 fetchTasks={fetchTasks}
                 editingTask={editingTask}
                 setEditingTask={setEditingTask}
                 tasks={filteredTasks}
+                showAddModal={showAddModal}
+                setShowAddModal={setShowAddModal}
               />
-            </div>
-          )}
+            )}
 
-          {activeMenu === "Profile" && user && (
-            <div>
-              <h1 className="text-4xl font-bold text-gray-800 mb-8">
-                My Profile
-              </h1>
-              <div className="flex justify-center">
-                <div className="bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-8 w-96 flex flex-col items-center gap-6 ">
-                  <div className="w-20 h-20 rounded-full bg-purple-500 flex items-center justify-center text-white text-3xl font-bold">
-                    {user.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .toUpperCase()}
+            {activeMenu === "Profile" && user && (
+              <div>
+                <h1 className="text-4xl font-bold text-gray-800 mb-8">
+                  My Profile
+                </h1>
+                <div className="flex justify-center">
+                  <div className="bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-8 w-96 flex flex-col items-center gap-6 ">
+                    <div className="w-20 h-20 rounded-full bg-purple-500 flex items-center justify-center text-white text-3xl font-bold">
+                      {user.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")
+                        .toUpperCase()}
+                    </div>
+
+                    <div className="text-center text-white">
+                      <p className="text-lg font-medium">
+                        <strong>Name:</strong> {user.name}
+                      </p>
+                      <p className="text-lg font-medium">
+                        <strong>Email:</strong> {user.email}
+                      </p>
+                    </div>
+
+                    <button
+                      className="mt-4 px-6 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold transition-all"
+                      onClick={() => setActiveMenu("Dashboard")}
+                    >
+                      Back to Dashboard
+                    </button>
                   </div>
-
-                  <div className="text-center text-white">
-                    <p className="text-lg font-medium">
-                      <strong>Name:</strong> {user.name}
-                    </p>
-                    <p className="text-lg font-medium">
-                      <strong>Email:</strong> {user.email}
-                    </p>
-                  </div>
-
-                  <button
-                    className="mt-4 px-6 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold transition-all"
-                    onClick={() => setActiveMenu("Dashboard")}
-                  >
-                    Back to Dashboard
-                  </button>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </main>
       </div>
 
